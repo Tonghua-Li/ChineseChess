@@ -102,17 +102,29 @@ Rectangle {
         columns: Const.HORIZONTAL_SIZE
         rows: Const.VERTICAL_SIZE
         Repeater {
+            id: pieceRepeater
             model: Const.HORIZONTAL_SIZE * Const.VERTICAL_SIZE
             DropArea {
                 id: dropArea
                 width: cellSize
                 height: cellSize
+                property alias dropProxy: dropArea
+                keys: ["chessPieceKey"]
+                property Rectangle pieceContainer: cell
+                onDropped: {
+                    console.log("dropp")
+                    if (index > 5) {
+                        drop.accept()
+                    }
+                }
+
                 Rectangle {
                     id: cell
                     anchors.fill: parent
                     border.color: "transparent"
                     border.width: 1
                     color: "transparent"
+
                     states: [
                         State {
                             when: dropArea.containsDrag
@@ -125,5 +137,13 @@ Rectangle {
                 }
             }
         }
+    }
+    ChessPiece {
+        id: piece
+        size: cellSize
+    }
+    Component.onCompleted: {
+        piece.parent = pieceRepeater.itemAt(0).pieceContainer
+        console.log("test")
     }
 }
