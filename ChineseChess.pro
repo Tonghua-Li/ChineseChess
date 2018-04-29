@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     AppLib \
-    Tests
+    Tests \
+    App
