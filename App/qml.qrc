@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>ChessBoard.qml</file>
         <file>Constants.js</file>
+        <file>ChessPiece.qml</file>
     </qresource>
 </RCC>

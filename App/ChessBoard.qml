@@ -28,10 +28,73 @@ Rectangle {
                 height: cellSize
                 border.color: Const.BORDER_COLOR
                 border.width: 1
-                color: "green"
+                color: "#FCAE3F"
             }
         }
     }
+
+    Rectangle {
+        id: river
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        border.width: 1
+        border.color: Const.BORDER_COLOR
+        height: cellSize
+        width: cellSize * (Const.HORIZONTAL_SIZE - 1)
+        color: "#FCAE3F"
+    }
+
+    Item {
+        id: topX
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: cellSize * 1.1
+        width: cellSize * 2
+        height: cellSize * 2
+        Rectangle {
+            anchors.left: parent.left
+            height: cellSize * 2 * 1.414
+            width: 1
+            color: "black"
+            transform: Rotation {
+                angle: -45
+            }
+        }
+        Rectangle {
+            anchors.right: parent.right
+            height: cellSize * 2 * 1.414
+            width: 1
+            color: Const.BORDER_COLOR
+            transform: Rotation {
+                angle: 45
+            }
+        }
+    }
+    Item {
+        id: bottomX
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: cellSize * (Const.VERTICAL_SIZE - 2) * 1.01
+        width: cellSize * 2
+        height: cellSize * 2
+        Rectangle {
+            anchors.left: parent.left
+            height: cellSize * 2 * 1.414
+            width: 1
+            color: "black"
+            transform: Rotation {
+                angle: -45
+            }
+        }
+        Rectangle {
+            anchors.right: parent.right
+            height: cellSize * 2 * 1.414
+            width: 1
+            color: Const.BORDER_COLOR
+            transform: Rotation {
+                angle: 45
+            }
+        }
+    }
+
     Grid {
         id: dropGrid
         anchors.horizontalCenter: parent.horizontalCenter
