@@ -16,7 +16,12 @@ Item {
 
         drag.target: tile
 
-        onReleased: parent = tile.Drag.target !== null ? tile.Drag.target : root
+        onReleased: {
+            if(tile.Drag.target!== null){
+                root.parent = tile.Drag.target
+            }
+        }
+
 
         Rectangle {
             id: tile

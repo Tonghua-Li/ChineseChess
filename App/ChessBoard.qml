@@ -109,14 +109,15 @@ Rectangle {
                 width: cellSize
                 height: cellSize
                 property alias dropProxy: dropArea
+                property int i:index
                 keys: ["chessPieceKey"]
                 property Rectangle pieceContainer: cell
                 onDropped: {
-                    console.log("dropp")
-                    if (index > 5) {
-                        drop.accept()
-                    }
+                    console.log("index")
+
                 }
+
+                Component.onCompleted: console.log(index)
 
                 Rectangle {
                     id: cell
