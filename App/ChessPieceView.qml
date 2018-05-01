@@ -17,6 +17,7 @@ Item {
         drag.target: tile
 
         onReleased: {
+
             if(tile.Drag.target!== null){
                 root.parent = tile.Drag.target
             }

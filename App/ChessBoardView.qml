@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import "Constants.js" as Const
+import chess.lib 1.0
 
 Rectangle {
     width: parent.height < parent.width ? parent.height / Const.VERTICAL_SIZE
@@ -12,7 +13,12 @@ Rectangle {
     border.width: Const.BORDER_WIDTH
 
     color: Const.BOARD_BACKGROUND
+
     property int cellSize: (width > height ? height : width) / Const.VERTICAL_SIZE
+    ChessBoard{
+        id: chessBoard
+    }
+
     Grid {
         id: lineGrid
 
@@ -139,7 +145,7 @@ Rectangle {
             }
         }
     }
-    ChessPiece {
+    ChessPieceView {
         id: piece
         size: cellSize
     }

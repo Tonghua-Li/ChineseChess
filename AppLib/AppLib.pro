@@ -23,11 +23,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Greeter.cpp \
-    ChessPiece.cpp
+    ChessPiece.cpp \
+    ChessBoard.cpp
 
 HEADERS += \
     Greeter.h \
-    ChessPiece.h
+    ChessPiece.h \
+    ChessBoard.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

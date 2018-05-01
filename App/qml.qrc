@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>ChessBoard.qml</file>
+        <file>ChessBoardView.qml</file>
         <file>Constants.js</file>
-        <file>ChessPiece.qml</file>
+        <file>ChessPieceView.qml</file>
     </qresource>
 </RCC>
