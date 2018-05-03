@@ -13,7 +13,7 @@ public:
 
   // ChessPiece interface
 public:
-//  bool CanMoveTo(const IBoard *board, int x, int y) const;
+  bool CanMoveTo(const IBoard *board, int x, int y) const;
 };
 
 #endif // BING_H
