@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<ChessBoard>("chess.lib", 1, 0, "ChessBoard");
+    qmlRegisterType<ChessPiece>("chess.lib", 1, 0, "ChessPiece");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

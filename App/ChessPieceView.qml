@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import chess.lib 1.0
 
 Item {
     id: root
@@ -6,7 +7,7 @@ Item {
 
     width: size
     height: size
-
+    property ChessPiece chessPiece;
     MouseArea {
         id: mouseArea
 
