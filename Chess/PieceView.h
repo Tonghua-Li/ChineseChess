@@ -14,6 +14,8 @@ public:
     void select();
     void unselect();
     bool isSelected(){return _isSelected;}
+    ChessPiece *piece() const;
+
 signals:
     void selected(PieceView *view);
 public slots:

@@ -12,10 +12,10 @@ bool Bing::canMoveTo(const IBoard *board, int x, int y) const
     auto currentX = _position.x();
     auto currentY = _position.y();
     if(currentX == x){
-        return abs(currentX - y) == 1;
+        return abs(currentY - y) == 1;
     }
     if(currentY == y){
-        return abs(currentY - y) == 1;
+        return abs(currentX - x) == 1;
     }
     return false;
 }

@@ -63,3 +63,8 @@ void PieceView::mousePressEvent(QMouseEvent *event)
 {
     emit selected(this);
 }
+
+ChessPiece *PieceView::piece() const
+{
+    return _piece;
+}

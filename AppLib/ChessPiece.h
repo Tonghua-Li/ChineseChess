@@ -19,6 +19,7 @@ public:
     QString letter() const { return _letter; }
     virtual bool canMoveTo(const IBoard *board, int x, int y) const = 0;
 
+
 signals:
     void positionChanged();
 public slots:

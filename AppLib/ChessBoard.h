@@ -21,7 +21,7 @@ private:
 
     // IBoard interface
 public:
-    int hasPieceOn(int x, int y) const;
+    Player getPieceOn(int x, int y) const;
 
 };
 

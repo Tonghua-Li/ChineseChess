@@ -26,7 +26,7 @@ QList<ChessPiece *> ChessBoard::chessPieces() const
     return _chessPieces;
 }
 
-int ChessBoard::hasPieceOn(int x, int y) const
+Player ChessBoard::getPieceOn(int x, int y) const
 {
-    return false;
+    return Player::None;
 }

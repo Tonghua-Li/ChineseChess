@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 enum class Player{
+    None,
     Red,
     Black,
 };

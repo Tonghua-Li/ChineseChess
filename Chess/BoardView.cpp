@@ -48,7 +48,11 @@ void BoardView::onWayPointClicked(WayPoint *wayPoint)
         }
     }
     if (selectedPv != nullptr) {
-        selectedPv->movePosition(wayPoint->position());
+        auto wpPos = wayPoint->position();
+        auto p = selectedPv->piece();
+        if(p->canMoveTo(_board, wpPos.x(), wpPos.y())){
+            selectedPv->movePosition(wayPoint->position());
+        }
         selectedPv->unselect();
     }
 }
