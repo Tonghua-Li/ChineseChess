@@ -33,7 +33,8 @@ HEADERS += \
     ChessBoard.h \
     IBoard.h \
     Bing.h \
-    IBoard.h
+    IBoard.h \
+    Player.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

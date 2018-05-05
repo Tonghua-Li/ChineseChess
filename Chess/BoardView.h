@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "PieceView.h"
 #include "WayPoint.h"
+#include "ChessBoard.h"
 class BoardView : public QWidget
 {
     Q_OBJECT
@@ -21,12 +22,19 @@ public slots:
 protected:
     void paintEvent(QPaintEvent *event);
 private:
+
+    void createWayPoints();
+    void createPieceViews(ChessBoard* board);
+
     const int HEIGHT = 11 * (PieceView::SIZE);
     const int WIDTH = 10* (PieceView::SIZE);
     const int V_LINE_COUNT = 9;
     const int H_LINE_COUNT = 10;
     QList<WayPoint*> _wayPoints;
     QList<PieceView*> _pieceViews;
+
+    ChessBoard* _board;
+
 };
 
 #endif // BOARDVIEW_H

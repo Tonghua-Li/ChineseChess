@@ -3,17 +3,18 @@
 
 #include "ChessPiece.h"
 
-
 #include <QObject>
 
-class Bing : public ChessPiece {
-  Q_OBJECT
+class Bing : public ChessPiece
+{
+    Q_OBJECT
 public:
-  Bing(QObject *parent = nullptr);
+    explicit Bing(QObject *parent, Player player);
 
-  // ChessPiece interface
+    // ChessPiece interface
 public:
-  bool CanMoveTo(const IBoard *board, int x, int y) const;
+    bool canMoveTo(const IBoard *board, int x, int y) const;
+
 };
 
 #endif // BING_H

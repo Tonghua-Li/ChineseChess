@@ -2,13 +2,13 @@
 #define PIECEVIEW_H
 
 #include <QWidget>
-
+#include "ChessPiece.h"
 class PieceView : public QWidget
 {
     Q_OBJECT
 public:
     static const int SIZE = 80;
-    explicit PieceView(QWidget *parent = nullptr);
+    explicit PieceView(QWidget *parent, ChessPiece *piece);
     void movePosition(const QPoint &pos);
     void movePosition(int x, int y);
     void select();
@@ -24,6 +24,8 @@ protected:
     void mousePressEvent(QMouseEvent *event);
 private:
     const int PADDING = 5;
+    ChessPiece* _piece;
+    QBrush _defaultBrush;
     QBrush _currentBrush;
     bool _isSelected=false;
 };

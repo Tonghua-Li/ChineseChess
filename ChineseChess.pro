@@ -3,5 +3,7 @@ TEMPLATE = subdirs
 SUBDIRS += \
     AppLib \
     Tests \
-    App \
     Chess
+
+Chess.depends = AppLib
+Tests.depends = AppLib

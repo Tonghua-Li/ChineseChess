@@ -11,28 +11,11 @@ BoardView::BoardView(QWidget *parent)
     setMinimumHeight(HEIGHT);
     setMinimumWidth(WIDTH);
 
-    auto space = PieceView::SIZE;
+    _board = new ChessBoard(this);
 
-    QPalette pal = palette();
+    createWayPoints();
+    createPieceViews(_board);
 
-    // set black background
-    pal.setColor(QPalette::Background, Qt::black);
-
-    for (int i = 0; i < V_LINE_COUNT; i++) {
-        for (int j = 0; j < H_LINE_COUNT; j++) {
-            auto wp = new WayPoint(this);
-            wp->setPosition(i, j);
-            QObject::connect(wp, &WayPoint::clicked, this, &BoardView::onWayPointClicked);
-        }
-    }
-
-    qDebug() << this->children().count();
-    for (int i = 0; i < 5; i++) {
-        auto p = new PieceView(this);
-        p->movePosition(i, i);
-        QObject::connect(p, &PieceView::selected, this, &BoardView::onPieceSelected);
-        _pieceViews.append(p);
-    }
 }
 
 void BoardView::drawBackground(QPainter &painter)
@@ -49,8 +32,7 @@ void BoardView::onPieceSelected(PieceView *pieceView)
     foreach (auto pv, _pieceViews) {
         if (pv == pieceView) {
             pv->select();
-        }
-        else{
+        } else {
             pv->unselect();
         }
     }
@@ -60,14 +42,35 @@ void BoardView::onWayPointClicked(WayPoint *wayPoint)
 {
     PieceView *selectedPv = nullptr;
     foreach (auto pv, _pieceViews) {
-        if(pv->isSelected()){
+        if (pv->isSelected()) {
             selectedPv = pv;
             break;
         }
     }
-    if(selectedPv != nullptr){
+    if (selectedPv != nullptr) {
         selectedPv->movePosition(wayPoint->position());
         selectedPv->unselect();
+    }
+}
+void BoardView::createWayPoints()
+{
+    for (int i = 0; i < V_LINE_COUNT; i++) {
+        for (int j = 0; j < H_LINE_COUNT; j++) {
+            auto wp = new WayPoint(this);
+            wp->setPosition(i, j);
+            QObject::connect(wp, &WayPoint::clicked, this, &BoardView::onWayPointClicked);
+        }
+    }
+}
+
+void BoardView::createPieceViews(ChessBoard *board)
+{
+    auto pieces = board->chessPieces();
+    foreach(auto p, pieces){
+        auto v = new PieceView(this, p);
+        v->movePosition(p->position());
+        QObject::connect(v, &PieceView::selected, this, &BoardView::onPieceSelected);
+        _pieceViews.append(v);
     }
 }
 

@@ -1,18 +1,15 @@
 #include "ChessPiece.h"
 
-bool ChessPiece::canMoveTo(int x, int y)
-{
-    return x > 5;
-}
-
-ChessPiece::ChessPiece(QObject *parent) : QObject(parent)
+ChessPiece::ChessPiece(QObject *parent, Player player, const QString &letter) :
+    QObject(parent),
+    _player(player),
+    _letter(letter)
 {
 
 }
 
-bool ChessPiece::CanMoveTo(const IBoard *board, int x, int y) const
+void ChessPiece::setPosition(int x, int y)
 {
-    Q_UNUSED(board);
-    Q_UNUSED(x);
-    Q_UNUSED(y);
+    _position.setX(x);
+    _position.setY(y);
 }

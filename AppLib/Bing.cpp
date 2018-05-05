@@ -1,11 +1,12 @@
 #include "Bing.h"
 
-Bing::Bing(QObject *parent):ChessPiece(parent)
+Bing::Bing(QObject *parent, Player player):
+    ChessPiece(parent, player, "兵")
 {
 
 }
 
-bool Bing::CanMoveTo(const IBoard *board, int x, int y) const
+bool Bing::canMoveTo(const IBoard *board, int x, int y) const
 {
     Q_UNUSED(board);
     auto currentX = _position.x();
