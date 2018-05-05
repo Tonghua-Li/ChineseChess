@@ -2,6 +2,7 @@
 #include "WayPoint.h"
 
 #include <QDebug>
+#include <QMessageBox>
 #include <QPainter>
 
 BoardView::BoardView(QWidget *parent)
@@ -22,11 +23,30 @@ void BoardView::drawBackground(QPainter &painter, const QBrush &brush)
     painter.restore();
 }
 
+bool BoardView::TryShowWinner()
+{
+    auto winner = _board->getWinner();
+    if(winner == Player::None){
+        return false;
+    }
+    QMessageBox msgBox;
+    QString msg = winner==Player::Red? "Red wins!":"Black wins!";
+    msgBox.setText(msg);
+    msgBox.exec();
+    return true;
+}
+
 void BoardView::onPieceViewClicked(PieceView *pieceView)
 {
     auto p = pieceView->piece();
     _board->onPieceClicked(p); // attack or select
     refreshBoard();
+
+    auto isWin = TryShowWinner();
+    if(isWin){
+        _board->reset();
+        refreshBoard();
+    }
 }
 
 void BoardView::onWayPointClicked(WayPoint *wayPoint)

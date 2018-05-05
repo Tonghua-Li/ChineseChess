@@ -9,7 +9,7 @@ Bing::Bing(QObject *parent, Player player):
 bool Bing::canMoveTo(const IBoard *board, int x, int y) const
 {
     auto player = this->player();
-    auto destPlayer=board->getPieceOn(x, y);
+    auto destPlayer=board->getPlayer(x, y);
     auto currentX = _position.x();
     auto currentY = _position.y();
     bool passRiver=isPassRiver(currentY);

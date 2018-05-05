@@ -33,6 +33,7 @@ private:
 
     ChessBoard* _board;
 
+    bool TryShowWinner();
 };
 
 #endif // BOARDVIEW_H

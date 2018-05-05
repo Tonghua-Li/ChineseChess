@@ -26,7 +26,8 @@ SOURCES += \
     ChessPiece.cpp \
     ChessBoard.cpp \
     Bing.cpp \
-    Che.cpp
+    Che.cpp \
+    Shuai.cpp
 
 HEADERS += \
     Greeter.h \
@@ -36,7 +37,8 @@ HEADERS += \
     Bing.h \
     IBoard.h \
     Player.h \
-    Che.h
+    Che.h \
+    Shuai.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

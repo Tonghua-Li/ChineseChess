@@ -7,10 +7,10 @@ Che::Che(QObject *parent, Player player):
 
 bool Che::canMoveTo(const IBoard *board, int x, int y) const
 {
-    auto destPlayer=board->getPieceOn(x,y);
+    auto destPlayer=board->getPlayer(x,y);
     auto currentX = _position.x();
     auto currentY = _position.y();
-    if(board->getPieceOn(x,y)==_player){return false;}
+    if(board->getPlayer(x,y)==_player){return false;}
 
     if(currentX==x){
         if(currentY==y){return false;}
@@ -18,13 +18,13 @@ bool Che::canMoveTo(const IBoard *board, int x, int y) const
         if(currentY>y){
             while(they>y){
                 they--;
-                if(they>y && board->getPieceOn(x,they)!=Player::None){return false;}
+                if(they>y && board->getPlayer(x,they)!=Player::None){return false;}
             }
         }
         else{
             while(they<y){
                 they++;
-                if(they<y && board->getPieceOn(x,they)!=Player::None){return false;}
+                if(they<y && board->getPlayer(x,they)!=Player::None){return false;}
             }
         }
     }
@@ -33,13 +33,13 @@ bool Che::canMoveTo(const IBoard *board, int x, int y) const
         if(currentX>x){
             while(thex>x){
                 thex--;
-                if(thex>x && board->getPieceOn(thex,y)!=Player::None){return false;}
+                if(thex>x && board->getPlayer(thex,y)!=Player::None){return false;}
             }
         }
         else{
             while(thex<x){
                 thex++;
-                if(thex<x && board->getPieceOn(thex,y)!=Player::None){return false;}
+                if(thex<x && board->getPlayer(thex,y)!=Player::None){return false;}
             }
         }
     }

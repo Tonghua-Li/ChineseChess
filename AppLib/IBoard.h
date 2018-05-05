@@ -8,7 +8,7 @@ class IBoard{
 
 public:
     virtual ~IBoard(){}
-    virtual Player getPieceOn(int x, int y) const = 0;
+    virtual Player getPlayer(int x, int y) const = 0;
 };
 
 #endif // IBOARD_H
