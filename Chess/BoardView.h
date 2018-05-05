@@ -16,7 +16,7 @@ public:
 signals:
 
 public slots:
-    void onPieceSelected(PieceView *pieceView);
+    void onPieceViewClicked(PieceView *pieceView);
     void onWayPointClicked(WayPoint *wayPoint);
     // QWidget interface
 protected:

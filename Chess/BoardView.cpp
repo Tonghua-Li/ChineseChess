@@ -15,7 +15,6 @@ BoardView::BoardView(QWidget *parent)
 
     createWayPoints();
     createPieceViews(_board);
-
 }
 
 void BoardView::drawBackground(QPainter &painter)
@@ -27,14 +26,23 @@ void BoardView::drawBackground(QPainter &painter)
     painter.restore();
 }
 
-void BoardView::onPieceSelected(PieceView *pieceView)
+void BoardView::onPieceViewClicked(PieceView *pieceView)
 {
+    PieceView *clicked = nullptr;
+    // select
     foreach (auto pv, _pieceViews) {
         if (pv == pieceView) {
-            pv->select();
+            clicked = pv;
         } else {
             pv->unselect();
         }
+    }
+    if (clicked == nullptr) {
+        return;
+    }
+    auto p = clicked->piece();
+    if (_board->canSelect(p)) {
+        clicked->select();
     }
 }
 
@@ -47,14 +55,16 @@ void BoardView::onWayPointClicked(WayPoint *wayPoint)
             break;
         }
     }
-    if (selectedPv != nullptr) {
-        auto wpPos = wayPoint->position();
-        auto p = selectedPv->piece();
-        if(p->canMoveTo(_board, wpPos.x(), wpPos.y())){
-            selectedPv->movePosition(wayPoint->position());
-        }
-        selectedPv->unselect();
+    if (selectedPv == nullptr) {
+        return;
     }
+    auto wpPos = wayPoint->position();
+    auto p = selectedPv->piece();
+    if (p->canMoveTo(_board, wpPos.x(), wpPos.y())) {
+        _board->nextPlayer();
+        selectedPv->movePosition(wayPoint->position());
+    }
+    selectedPv->unselect();
 }
 void BoardView::createWayPoints()
 {
@@ -70,10 +80,10 @@ void BoardView::createWayPoints()
 void BoardView::createPieceViews(ChessBoard *board)
 {
     auto pieces = board->chessPieces();
-    foreach(auto p, pieces){
+    foreach (auto p, pieces) {
         auto v = new PieceView(this, p);
         v->movePosition(p->position());
-        QObject::connect(v, &PieceView::selected, this, &BoardView::onPieceSelected);
+        QObject::connect(v, &PieceView::selected, this, &BoardView::onPieceViewClicked);
         _pieceViews.append(v);
     }
 }

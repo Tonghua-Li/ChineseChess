@@ -12,6 +12,10 @@ public:
     explicit ChessBoard(QObject *parent = nullptr);
     ~ChessBoard();
     QList<ChessPiece *> chessPieces() const;
+    void nextPlayer();
+    bool canSelect(ChessPiece *piece) const;
+    Player getActivePlayer() const;
+    Player getPieceOn(int x, int y) const;
 signals:
     void chessPiecesChanged();
 public slots:
@@ -19,9 +23,8 @@ public slots:
 private:
     QList<ChessPiece *> _chessPieces;
 
-    // IBoard interface
-public:
-    Player getPieceOn(int x, int y) const;
+    Player _activePlayer;
+
 
 };
 
