@@ -2,7 +2,6 @@
 #include "WayPoint.h"
 
 #include <QDebug>
-#include <QLabel>
 #include <QPainter>
 
 BoardView::BoardView(QWidget *parent)
@@ -14,7 +13,7 @@ BoardView::BoardView(QWidget *parent)
     _board = new ChessBoard(this);
 
     createWayPoints();
-    createPieceViews(_board);
+    refreshBoard();
 }
 
 void BoardView::drawBackground(QPainter &painter)
@@ -28,43 +27,17 @@ void BoardView::drawBackground(QPainter &painter)
 
 void BoardView::onPieceViewClicked(PieceView *pieceView)
 {
-    PieceView *clicked = nullptr;
-    // select
-    foreach (auto pv, _pieceViews) {
-        if (pv == pieceView) {
-            clicked = pv;
-        } else {
-            pv->unselect();
-        }
-    }
-    if (clicked == nullptr) {
-        return;
-    }
-    auto p = clicked->piece();
-    if (_board->canSelect(p)) {
-        clicked->select();
-    }
+    auto p = pieceView->piece();
+    _board->onPieceClicked(p); // attack or select
+    refreshBoard();
 }
 
 void BoardView::onWayPointClicked(WayPoint *wayPoint)
 {
-    PieceView *selectedPv = nullptr;
-    foreach (auto pv, _pieceViews) {
-        if (pv->isSelected()) {
-            selectedPv = pv;
-            break;
-        }
-    }
-    if (selectedPv == nullptr) {
-        return;
-    }
     auto wpPos = wayPoint->position();
-    auto p = selectedPv->piece();
-    if (p->canMoveTo(_board, wpPos.x(), wpPos.y())) {
-        _board->nextPlayer();
-        selectedPv->movePosition(wayPoint->position());
-    }
-    selectedPv->unselect();
+    _board->moveSelectedTo(wpPos);
+    refreshBoard();
+
 }
 void BoardView::createWayPoints()
 {
@@ -77,12 +50,17 @@ void BoardView::createWayPoints()
     }
 }
 
-void BoardView::createPieceViews(ChessBoard *board)
+void BoardView::refreshBoard()
 {
-    auto pieces = board->chessPieces();
+    foreach(auto pv, _pieceViews){
+        delete pv;
+    }
+    _pieceViews.clear();
+
+    auto pieces = _board->chessPieces();
     foreach (auto p, pieces) {
         auto v = new PieceView(this, p);
-        v->movePosition(p->position());
+        v->show();
         QObject::connect(v, &PieceView::selected, this, &BoardView::onPieceViewClicked);
         _pieceViews.append(v);
     }

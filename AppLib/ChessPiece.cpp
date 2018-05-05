@@ -14,6 +14,16 @@ void ChessPiece::setPosition(int x, int y)
     _position.setY(y);
 }
 
+bool ChessPiece::isSelected() const
+{
+    return _isSelected;
+}
+
+void ChessPiece::setIsSelected(bool isSelected)
+{
+    _isSelected = isSelected;
+}
+
 bool ChessPiece::isPassRiver(int y) const
 {
     bool passRiver=false;

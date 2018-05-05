@@ -21,6 +21,9 @@ public:
     bool isPassRiver(int y) const;
     bool isForward(int y) const;
 
+    bool isSelected() const;
+    void setIsSelected(bool isSelected);
+
 signals:
     void positionChanged();
 public slots:
@@ -29,6 +32,7 @@ protected:
     QPoint _position;
     Player _player;
     QString _letter;
+    bool _isSelected = false;
 };
 
 #endif // CHESSPIECE_H

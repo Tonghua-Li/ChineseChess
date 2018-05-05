@@ -11,31 +11,36 @@ PieceView::PieceView(QWidget *parent, ChessPiece *piece)
     _defaultBrush = piece->player() == Player::Black ? QBrush(QColor(192, 190, 192))
                                                      : QBrush(QColor(255, 255, 255));
     _currentBrush = _defaultBrush;
-    this->resize(SIZE, SIZE);
+    if(_piece->isSelected()){
+        select();
+    }
+    else{
+        unselect();
+    }
+    movePosition(_piece->position());
+    resize(SIZE, SIZE);
 }
 
 void PieceView::movePosition(const QPoint &pos)
 {
-    this->movePosition(pos.x(), pos.y());
+    auto x =pos.x();
+    auto y = pos.y();
+    this->move(x * SIZE + SIZE / 2, y * SIZE + SIZE / 2);
     _piece->setPosition(pos);
 }
 
-void PieceView::movePosition(int x, int y)
-{
-    this->move(x * SIZE + SIZE / 2, y * SIZE + SIZE / 2);
-}
 
 void PieceView::select()
 {
     _currentBrush = QBrush(Qt::blue);
-    _isSelected = true;
+    _piece->setIsSelected(true);
     repaint();
 }
 
 void PieceView::unselect()
 {
     _currentBrush = _defaultBrush;
-    _isSelected = false;
+    _piece->setIsSelected(false);
     repaint();
 }
 
@@ -51,12 +56,18 @@ void PieceView::paintEvent(QPaintEvent *event)
 
     painter.drawEllipse(0, 0, SIZE - borderThickness, SIZE - borderThickness);
 
-    painter.setPen( Qt::black );
-    auto font = painter.font();
-    font.setPixelSize(SIZE/2);
-    painter.setFont( font );
+    if(_piece->player() == Player::Red){
+        painter.setPen(Qt::red);
+    }
+    else{
+        painter.setPen(Qt::black);
+    }
 
-    painter.drawText(0, 0, SIZE, SIZE, Qt::AlignCenter,  _piece->letter());
+    auto font = painter.font();
+    font.setPixelSize(SIZE / 2);
+    painter.setFont(font);
+
+    painter.drawText(0, 0, SIZE, SIZE, Qt::AlignCenter, _piece->letter());
     QWidget::paintEvent(event);
 }
 

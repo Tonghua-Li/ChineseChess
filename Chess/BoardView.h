@@ -11,7 +11,7 @@ class BoardView : public QWidget
 public:
     explicit BoardView(QWidget *parent = nullptr);
 
-    void drawBackground(QPainter &painter);
+
 
 signals:
 
@@ -22,9 +22,9 @@ public slots:
 protected:
     void paintEvent(QPaintEvent *event);
 private:
-
+    void drawBackground(QPainter &painter);
     void createWayPoints();
-    void createPieceViews(ChessBoard* board);
+    void refreshBoard();
 
     const int HEIGHT = 11 * (PieceView::SIZE);
     const int WIDTH = 10* (PieceView::SIZE);
