@@ -59,6 +59,7 @@ bool ChessBoard::isAttack(ChessPiece *piece) const {
 
 void ChessBoard::attack(ChessPiece *a, ChessPiece *b)
 {
+    if(a->canMoveTo(this, b->position().x(), b->position().y())==false){return;}
     a->setPosition(b->position());
     _chessPieces.removeOne(b);
     a->setIsSelected(false);
