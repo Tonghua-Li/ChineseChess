@@ -7,20 +7,17 @@
 BoardView::BoardView(QWidget *parent)
     : QWidget(parent)
 {
-    setMinimumHeight(HEIGHT);
-    setMinimumWidth(WIDTH);
-
     _board = new ChessBoard(this);
 
     createWayPoints();
     refreshBoard();
 }
 
-void BoardView::drawBackground(QPainter &painter)
+void BoardView::drawBackground(QPainter &painter, const QBrush &brush)
 {
     painter.save();
     painter.setPen(Qt::NoPen);
-    painter.setBrush(QBrush(QColor(211, 194, 129)));
+    painter.setBrush(brush);
     painter.drawRect(0, 0, WIDTH, HEIGHT);
     painter.restore();
 }
@@ -70,19 +67,28 @@ void BoardView::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
 
-    auto space = PieceView::SIZE;
-
-    drawBackground(painter);
+    auto s = PieceView::SIZE;
+    QBrush backgroundBrush(QColor(211, 194, 129));
+    drawBackground(painter, backgroundBrush);
 
     for (int i = 0; i < V_LINE_COUNT; i++) {
-        auto x = space * (i + 1);
-        painter.drawLine(x, space, x, HEIGHT - space);
+        auto x = s * (i + 1);
+        painter.drawLine(x, s, x, HEIGHT - s);
     }
 
     for (int i = 0; i < H_LINE_COUNT; i++) {
-        auto y = space * (i + 1);
-        painter.drawLine(space, y, WIDTH - space, y);
+        auto y = s * (i + 1);
+        painter.drawLine(s, y, WIDTH - s, y);
     }
+
+    // river
+    painter.fillRect(s+1, 5*s+1, 8*s-1, s-1, backgroundBrush);
+    // top x
+    painter.drawLine(4*s, s, 6*s, 3*s);
+    painter.drawLine(6*s, s, 4*s, 3*s);
+    // bottom x
+    painter.drawLine(4*s, 8*s, 6*s, 10*s);
+    painter.drawLine(6*s, 8*s, 4*s, 10*s);
 
     QWidget::paintEvent(event);
 }

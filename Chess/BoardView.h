@@ -22,7 +22,7 @@ public slots:
 protected:
     void paintEvent(QPaintEvent *event);
 private:
-    void drawBackground(QPainter &painter);
+    void drawBackground(QPainter &painter, const QBrush &brush);
     void createWayPoints();
     void refreshBoard();
 
