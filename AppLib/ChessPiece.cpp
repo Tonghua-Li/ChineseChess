@@ -13,3 +13,26 @@ void ChessPiece::setPosition(int x, int y)
     _position.setX(x);
     _position.setY(y);
 }
+
+bool ChessPiece::isPassRiver(int y) const
+{
+    bool passRiver=false;
+    if(_player==Player::Red){
+        passRiver=(y<=4);
+    }
+    if(_player==Player::Black){
+        passRiver=(y>=5);
+    }
+    return passRiver;
+}
+
+bool ChessPiece::isForward(int y) const
+{
+    if(_player==Player::Red){
+        return y<_position.y();
+    }
+    if(_player==Player::Black){
+        return y>_position.y();
+    }
+    return false;
+}

@@ -1,5 +1,6 @@
 #include "ChessBoard.h"
 #include "Bing.h"
+#include "Che.h"
 #include <QDebug>
 ChessBoard::ChessBoard(QObject *parent)
     : QObject(parent)
@@ -7,12 +8,12 @@ ChessBoard::ChessBoard(QObject *parent)
     qDebug() << "Created board";
     _activePlayer = Player::Red;
     for (int i = 0; i < 5; i++) {
-        auto p = new Bing(this, Player::Black);
+        auto p = new Che(this, Player::Black);
         p->setPosition(i * 2, 3);
         _chessPieces.append(p);
     }
     for (int i = 0; i < 5; i++) {
-        auto p = new Bing(this, Player::Red);
+        auto p = new Che(this, Player::Red);
         p->setPosition(i * 2, 6);
         _chessPieces.append(p);
     }

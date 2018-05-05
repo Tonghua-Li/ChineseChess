@@ -18,7 +18,8 @@ public:
     Player player() const { return _player; }
     QString letter() const { return _letter; }
     virtual bool canMoveTo(const IBoard *board, int x, int y) const = 0;
-
+    bool isPassRiver(int y) const;
+    bool isForward(int y) const;
 
 signals:
     void positionChanged();

@@ -17,6 +17,7 @@ PieceView::PieceView(QWidget *parent, ChessPiece *piece)
 void PieceView::movePosition(const QPoint &pos)
 {
     this->movePosition(pos.x(), pos.y());
+    _piece->setPosition(pos);
 }
 
 void PieceView::movePosition(int x, int y)

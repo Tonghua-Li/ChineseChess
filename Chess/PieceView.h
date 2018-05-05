@@ -7,7 +7,7 @@ class PieceView : public QWidget
 {
     Q_OBJECT
 public:
-    static const int SIZE = 80;
+    static const int SIZE = 60;
     explicit PieceView(QWidget *parent, ChessPiece *piece);
     void movePosition(const QPoint &pos);
     void movePosition(int x, int y);

@@ -7,4 +7,10 @@ enum class Player{
     Black,
 };
 
+//Player GetCounterParty(Player p){
+//    if(p==Player::Black){return Player::Red;}
+//    if(p==Player::Red){return Player::Black;}
+//    return Player::None;
+//}
+
 #endif // PLAYER_H
