@@ -10,9 +10,8 @@ class BoardView : public QWidget
     Q_OBJECT
 public:
     explicit BoardView(QWidget *parent = nullptr);
-
-
-
+    static const int HEIGHT = 11 * (PieceView::SIZE);
+    static const int WIDTH = 10* (PieceView::SIZE);
 signals:
 
 public slots:
@@ -26,8 +25,7 @@ private:
     void createWayPoints();
     void refreshBoard();
 
-    const int HEIGHT = 11 * (PieceView::SIZE);
-    const int WIDTH = 10* (PieceView::SIZE);
+
     const int V_LINE_COUNT = 9;
     const int H_LINE_COUNT = 10;
     QList<WayPoint*> _wayPoints;

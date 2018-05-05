@@ -3,6 +3,6 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
-    this->resize(680, 760);
+    this->resize(BoardView::WIDTH, BoardView::HEIGHT);
     this->setCentralWidget(new BoardView(this));
 }
