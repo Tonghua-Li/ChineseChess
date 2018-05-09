@@ -1,5 +1,6 @@
 #include "tst_test1.h"
 #include "GreeterTests.h"
+#include "ShiTests.h"
 #include <gtest/gtest.h>
 
 int main(int argc, char *argv[])

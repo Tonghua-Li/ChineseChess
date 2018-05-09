@@ -8,7 +8,9 @@ CONFIG += qt
 
 HEADERS += \
         tst_test1.h \
-        GreeterTests.h
+        GreeterTests.h \
+    ShiTests.h \
+    MockBoard.h
 SOURCES += \
         main.cpp
 

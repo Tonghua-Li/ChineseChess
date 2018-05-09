@@ -2,6 +2,7 @@
 #include "Bing.h"
 #include "Che.h"
 #include "Shuai.h"
+#include "Shi.h"
 #include <QDebug>
 
 ChessBoard::ChessBoard(QObject *parent)
@@ -37,6 +38,12 @@ void ChessBoard::reset()
     _redShuai = new Shuai(this, Player::Red);
     _chessPieces.append(_blackShuai);
     _chessPieces.append(_redShuai);
+    // shi
+    _chessPieces.append(new Shi(this, Player::Black, 3, 0));
+    _chessPieces.append(new Shi(this, Player::Black, 5, 0));
+    _chessPieces.append(new Shi(this, Player::Red, 3, 9));
+    _chessPieces.append(new Shi(this, Player::Red, 5, 9));
+
 }
 
 QList<ChessPiece *> ChessBoard::chessPieces() const
