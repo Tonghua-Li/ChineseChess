@@ -28,6 +28,7 @@ SOURCES += \
     Bing.cpp \
     Che.cpp \
     Shuai.cpp \
+    Ma.cpp \
     Shi.cpp
 
 HEADERS += \
@@ -40,7 +41,8 @@ HEADERS += \
     Player.h \
     Che.h \
     Shuai.h \
-    Shi.h
+    Shi.h \
+    Ma.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

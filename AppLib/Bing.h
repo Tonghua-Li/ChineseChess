@@ -9,7 +9,7 @@ class Bing : public ChessPiece
 {
     Q_OBJECT
 public:
-    explicit Bing(QObject *parent, Player player);
+    explicit Bing(QObject *parent, Player player, int x, int y);
 
     // ChessPiece interface
 public:

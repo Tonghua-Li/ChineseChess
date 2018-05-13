@@ -3,6 +3,7 @@
 #include "Che.h"
 #include "Shuai.h"
 #include "Shi.h"
+#include "Ma.h"
 #include <QDebug>
 
 ChessBoard::ChessBoard(QObject *parent)
@@ -24,13 +25,11 @@ void ChessBoard::reset()
     _chessPieces.clear();
     // bing
     for (int i = 0; i < 5; i++) {
-        auto p = new Bing(this, Player::Black);
-        p->setPosition(i * 2, 3);
+        auto p = new Bing(this, Player::Black, i * 2, 3);
         _chessPieces.append(p);
     }
     for (int i = 0; i < 5; i++) {
-        auto p = new Bing(this, Player::Red);
-        p->setPosition(i * 2, 6);
+        auto p = new Bing(this, Player::Red, i * 2, 6);
         _chessPieces.append(p);
     }
     // shuai
@@ -43,6 +42,18 @@ void ChessBoard::reset()
     _chessPieces.append(new Shi(this, Player::Black, 5, 0));
     _chessPieces.append(new Shi(this, Player::Red, 3, 9));
     _chessPieces.append(new Shi(this, Player::Red, 5, 9));
+
+    // che
+    _chessPieces.append(new Che(this, Player::Black, 0, 0));
+    _chessPieces.append(new Che(this, Player::Black, 8, 0));
+    _chessPieces.append(new Che(this, Player::Red, 0, 9));
+    _chessPieces.append(new Che(this, Player::Red, 8, 9));
+
+    // ma
+    _chessPieces.append(new Ma(this, Player::Black, 1, 0));
+    _chessPieces.append(new Ma(this, Player::Black, 7, 0));
+    _chessPieces.append(new Ma(this, Player::Red, 1, 9));
+    _chessPieces.append(new Ma(this, Player::Red, 7, 9));
 
 }
 
@@ -109,6 +120,12 @@ Player ChessBoard::getWinner() const
 
 Player ChessBoard::getPlayer(int x, int y) const
 {
+    QPoint pos(x, y);
+    foreach(auto p, _chessPieces){
+        if(p->position() == pos){
+            return p->player();
+        }
+    }
     return Player::None;
 }
 

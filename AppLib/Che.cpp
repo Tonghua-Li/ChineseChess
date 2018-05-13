@@ -1,8 +1,9 @@
 #include "Che.h"
 
-Che::Che(QObject *parent, Player player):
-    ChessPiece(parent, player, "撤")
+Che::Che(QObject *parent, Player player, int x, int y):
+    ChessPiece(parent, player, "車")
 {
+    setPosition(x, y);
 }
 
 bool Che::canMoveTo(const IBoard *board, int x, int y) const
