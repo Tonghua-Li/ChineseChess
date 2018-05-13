@@ -12,7 +12,7 @@ bool Ma::canMoveTo(const IBoard *board, int x, int y) const
     auto currentY = _position.y();
     auto deltaY = abs(y - currentY);
     auto deltaX = abs(x - currentX);
-    if (deltaX != 1 || deltaY != 2) {
+    if (deltaX * deltaY != 2) {
         return false;
     }
     if (abs(y) > abs(x)) { // Y direction

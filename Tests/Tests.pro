@@ -10,7 +10,8 @@ HEADERS += \
         tst_test1.h \
         GreeterTests.h \
     ShiTests.h \
-    MockBoard.h
+    MockBoard.h \
+    MaTests.h
 SOURCES += \
         main.cpp
 

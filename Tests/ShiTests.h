@@ -15,11 +15,11 @@ TEST(ShiTest, CannotMoveOutOfBox)
     ASSERT_FALSE(shi->canMoveTo(&board, 5, 0));
     ASSERT_FALSE(shi->canMoveTo(&board, 5, 1));
     ASSERT_FALSE(shi->canMoveTo(&board, 5, 2));
-    ASSERT_FALSE(shi->canMoveTo(&board, 4, 1));
+    ASSERT_TRUE(shi->canMoveTo(&board, 4, 1));
     ASSERT_FALSE(shi->canMoveTo(&board, 4, 2));
     ASSERT_FALSE(shi->canMoveTo(&board, 3, 2));
-    ASSERT_TRUE(shi->canMoveTo(&board, 3, 1));
-    ASSERT_TRUE(shi->canMoveTo(&board, 4, 0));
+    ASSERT_FALSE(shi->canMoveTo(&board, 3, 1));
+    ASSERT_FALSE(shi->canMoveTo(&board, 4, 0));
     int xPositions[9][2] = {
         {3, 0}, {4, 0}, {5, 0},
         {3, 1}, {4, 1}, {5, 1},
