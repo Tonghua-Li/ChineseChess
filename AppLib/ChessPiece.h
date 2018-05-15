@@ -11,7 +11,7 @@ class ChessPiece : public QObject
 {
     Q_OBJECT
 public:
-    explicit ChessPiece(QObject *parent, Player player, const QString &letter);
+    explicit ChessPiece(QObject *parent, Player player, const QString &letter, int x, int y);
     QPoint position() const { return _position; }
     void setPosition(const QPoint &position) { _position = position; }
     void setPosition(int x, int y);

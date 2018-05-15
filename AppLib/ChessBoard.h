@@ -17,13 +17,14 @@ public:
     void nextPlayer();
     bool canSelect(ChessPiece *piece) const;
     void select(ChessPiece *piece);
-    bool isAttack(ChessPiece* piece) const;
+    bool isAttack(ChessPiece *piece) const;
     void attack(ChessPiece *a, ChessPiece *b);
     Player getWinner() const;
     Player getActivePlayer() const;
     Player getPlayer(int x, int y) const;
+    bool isCrossRiver(Player player, int y) const;
     void moveSelectedTo(const QPoint &pos);
-    ChessPiece* getSelected() const;
+    ChessPiece *getSelected() const;
     void onPieceClicked(ChessPiece *piece);
 signals:
     void chessPiecesChanged();
@@ -34,10 +35,8 @@ private:
     QList<ChessPiece *> _chessPieces;
 
     Player _activePlayer;
-    Shuai* _blackShuai;
-    Shuai* _redShuai;
-
-
+    Shuai *_blackShuai;
+    Shuai *_redShuai;
 };
 
 #endif // CHESSBOARD_H

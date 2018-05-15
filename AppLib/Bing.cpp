@@ -1,9 +1,9 @@
 #include "Bing.h"
 
 Bing::Bing(QObject *parent, Player player, int x, int y):
-    ChessPiece(parent, player, "兵")
+    ChessPiece(parent, player, "兵", x, y)
 {
-    setPosition(x, y);
+
 }
 
 bool Bing::canMoveTo(const IBoard *board, int x, int y) const

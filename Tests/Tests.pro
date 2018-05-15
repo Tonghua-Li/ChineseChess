@@ -11,7 +11,9 @@ HEADERS += \
         GreeterTests.h \
     ShiTests.h \
     MockBoard.h \
-    MaTests.h
+    MaTests.h \
+    XiangTests.h \
+    ChessBoardTests.h
 SOURCES += \
         main.cpp
 

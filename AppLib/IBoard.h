@@ -9,6 +9,7 @@ class IBoard{
 public:
     virtual ~IBoard(){}
     virtual Player getPlayer(int x, int y) const = 0;
+    virtual bool isCrossRiver(Player player, int y) const = 0;
 };
 
 #endif // IBOARD_H

@@ -1,9 +1,10 @@
 #include "ChessBoard.h"
 #include "Bing.h"
 #include "Che.h"
-#include "Shuai.h"
-#include "Shi.h"
 #include "Ma.h"
+#include "Shi.h"
+#include "Shuai.h"
+#include "Xiang.h"
 #include <QDebug>
 
 ChessBoard::ChessBoard(QObject *parent)
@@ -12,14 +13,13 @@ ChessBoard::ChessBoard(QObject *parent)
     qDebug() << "Created board";
     _activePlayer = Player::Red;
     reset();
-
 }
 
 ChessBoard::~ChessBoard() {}
 
 void ChessBoard::reset()
 {
-    foreach(auto p, _chessPieces){
+    foreach (auto p, _chessPieces) {
         delete p;
     }
     _chessPieces.clear();
@@ -55,6 +55,11 @@ void ChessBoard::reset()
     _chessPieces.append(new Ma(this, Player::Red, 1, 9));
     _chessPieces.append(new Ma(this, Player::Red, 7, 9));
 
+    // xiang
+    _chessPieces.append(new Xiang(this, Player::Black, 2, 0));
+    _chessPieces.append(new Xiang(this, Player::Black, 6, 0));
+    _chessPieces.append(new Xiang(this, Player::Red, 2, 9));
+    _chessPieces.append(new Xiang(this, Player::Red, 6, 9));
 }
 
 QList<ChessPiece *> ChessBoard::chessPieces() const
@@ -109,10 +114,10 @@ void ChessBoard::attack(ChessPiece *a, ChessPiece *b)
 
 Player ChessBoard::getWinner() const
 {
-    if(_chessPieces.contains(_blackShuai)==false){
+    if (_chessPieces.contains(_blackShuai) == false) {
         return _redShuai->player();
     }
-    if(_chessPieces.contains(_redShuai)==false){
+    if (_chessPieces.contains(_redShuai) == false) {
         return _blackShuai->player();
     }
     return Player::None;
@@ -121,12 +126,20 @@ Player ChessBoard::getWinner() const
 Player ChessBoard::getPlayer(int x, int y) const
 {
     QPoint pos(x, y);
-    foreach(auto p, _chessPieces){
-        if(p->position() == pos){
+    foreach (auto p, _chessPieces) {
+        if (p->position() == pos) {
             return p->player();
         }
     }
     return Player::None;
+}
+
+bool ChessBoard::isCrossRiver(Player player, int y) const
+{
+    if (player == Player::Black) {
+        return y > 4;
+    }
+    return y < 5;
 }
 
 void ChessBoard::moveSelectedTo(const QPoint &pos)

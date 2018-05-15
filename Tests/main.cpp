@@ -2,6 +2,8 @@
 #include "GreeterTests.h"
 #include "ShiTests.h"
 #include "MaTests.h"
+#include "XiangTests.h"
+#include "ChessBoardTests.h"
 #include <gtest/gtest.h>
 
 int main(int argc, char *argv[])
