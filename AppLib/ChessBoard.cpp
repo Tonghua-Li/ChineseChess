@@ -134,6 +134,12 @@ Player ChessBoard::getPlayer(int x, int y) const
     return Player::None;
 }
 
+bool ChessBoard::isShuai(int x, int y) const
+{
+    QPoint pos(x, y);
+    return _blackShuai->position() == pos || _redShuai->position() == pos;
+}
+
 bool ChessBoard::isCrossRiver(Player player, int y) const
 {
     if (player == Player::Black) {

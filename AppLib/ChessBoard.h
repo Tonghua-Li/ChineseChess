@@ -22,6 +22,7 @@ public:
     Player getWinner() const;
     Player getActivePlayer() const;
     Player getPlayer(int x, int y) const;
+    bool isShuai(int x, int y) const;
     bool isCrossRiver(Player player, int y) const;
     void moveSelectedTo(const QPoint &pos);
     ChessPiece *getSelected() const;
