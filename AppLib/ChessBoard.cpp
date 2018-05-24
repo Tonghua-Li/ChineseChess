@@ -33,8 +33,8 @@ void ChessBoard::reset()
         _chessPieces.append(p);
     }
     // shuai
-    _blackShuai = new Shuai(this, Player::Black);
-    _redShuai = new Shuai(this, Player::Red);
+    _blackShuai = new Shuai(this, Player::Black,4,0);
+    _redShuai = new Shuai(this, Player::Red,4,9);
     _chessPieces.append(_blackShuai);
     _chessPieces.append(_redShuai);
     // shi
@@ -148,6 +148,14 @@ bool ChessBoard::isCrossRiver(Player player, int y) const
     return y < 5;
 }
 
+bool ChessBoard::isInsidePalace(Player player, int x, int y) const
+{
+    if(player==Player::Black){
+        return (x>=3 && x<=5) && (y>=0 && y<=2);
+    }
+    return (x>=3 && x<=5) && (y>=7 && y<=9);
+}
+
 void ChessBoard::moveSelectedTo(const QPoint &pos)
 {
     auto piece = getSelected();
@@ -194,4 +202,14 @@ ChessPiece *ChessBoard::getPiece(int x, int y) const
 Player ChessBoard::getActivePlayer() const
 {
     return _activePlayer;
+}
+
+int ChessBoard::getPieceId(int x, int y) const
+{
+    foreach (auto p, _chessPieces) {
+        if (p->position().x() == x && p->position().y() == y) {
+            return p->getId();
+        }
+    }
+    return 0;
 }

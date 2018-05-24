@@ -1,7 +1,7 @@
 #include "Ma.h"
 
 Ma::Ma(QObject *parent, Player player, int x, int y)
-    : ChessPiece(parent, player, "馬", x, y)
+    : ChessPiece(parent, player, "馬", x, y,3)
 {}
 
 bool Ma::canMoveTo(const IBoard *board, int x, int y) const

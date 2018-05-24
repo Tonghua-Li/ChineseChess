@@ -1,7 +1,7 @@
 #include "Xiang.h"
 
 Xiang::Xiang(QObject *parent, Player player, int x, int y)
-    : ChessPiece(parent, player, player == Player::Black ? "象" : "相", x, y)
+    : ChessPiece(parent, player, player == Player::Black ? "象" : "相", x, y,6)
 {}
 
 bool Xiang::canMoveTo(const IBoard *board, int x, int y) const

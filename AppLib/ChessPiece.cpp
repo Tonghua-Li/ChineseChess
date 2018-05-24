@@ -1,10 +1,11 @@
 #include "ChessPiece.h"
 
-ChessPiece::ChessPiece(QObject *parent, Player player, const QString &letter, int x, int y)
+ChessPiece::ChessPiece(QObject *parent, Player player, const QString &letter, int x, int y, int id)
     : QObject(parent)
     , _position(QPoint(x, y))
     , _player(player)
     , _letter(letter)
+    , _id(id)
 {}
 
 void ChessPiece::setPosition(int x, int y)
@@ -45,3 +46,5 @@ bool ChessPiece::isForward(int y) const
     }
     return false;
 }
+
+int ChessPiece::getId() const{return _id;}

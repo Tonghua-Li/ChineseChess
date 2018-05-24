@@ -30,7 +30,8 @@ SOURCES += \
     Shuai.cpp \
     Ma.cpp \
     Shi.cpp \
-    Xiang.cpp
+    Xiang.cpp \
+    pao.cpp
 
 HEADERS += \
     Greeter.h \
@@ -44,7 +45,8 @@ HEADERS += \
     Shuai.h \
     Shi.h \
     Ma.h \
-    Xiang.h
+    Xiang.h \
+    pao.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

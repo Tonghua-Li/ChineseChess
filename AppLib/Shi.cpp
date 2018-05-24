@@ -1,7 +1,7 @@
 #include "Shi.h"
 
 Shi::Shi(QObject *parent, Player player, int x, int y)
-    : ChessPiece(parent, player, "士", x, y)
+    : ChessPiece(parent, player, "士", x, y,5)
 {
     auto deltaY = _player == Player::Black ? 0 : 7;
 

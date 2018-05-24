@@ -27,6 +27,8 @@ public:
     void moveSelectedTo(const QPoint &pos);
     ChessPiece *getSelected() const;
     void onPieceClicked(ChessPiece *piece);
+    int getPieceId(int x, int y) const;
+    bool isInsidePalace(Player player,int x, int y) const;
 signals:
     void chessPiecesChanged();
 public slots:

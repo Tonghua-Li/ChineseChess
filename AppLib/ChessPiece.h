@@ -11,7 +11,7 @@ class ChessPiece : public QObject
 {
     Q_OBJECT
 public:
-    explicit ChessPiece(QObject *parent, Player player, const QString &letter, int x, int y);
+    explicit ChessPiece(QObject *parent, Player player, const QString &letter, int x, int y, int id);
     QPoint position() const { return _position; }
     void setPosition(const QPoint &position) { _position = position; }
     void setPosition(int x, int y);
@@ -20,9 +20,9 @@ public:
     virtual bool canMoveTo(const IBoard *board, int x, int y) const = 0;
     bool isPassRiver(int y) const;
     bool isForward(int y) const;
-
     bool isSelected() const;
     void setIsSelected(bool isSelected);
+    int getId() const;
 
 signals:
     void positionChanged();
@@ -33,6 +33,7 @@ protected:
     Player _player;
     QString _letter;
     bool _isSelected = false;
+    int _id;
 };
 
 #endif // CHESSPIECE_H

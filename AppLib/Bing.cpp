@@ -1,7 +1,7 @@
 #include "Bing.h"
 
 Bing::Bing(QObject *parent, Player player, int x, int y):
-    ChessPiece(parent, player, "兵", x, y)
+    ChessPiece(parent, player, "兵", x, y,1)
 {
 
 }

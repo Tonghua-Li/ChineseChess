@@ -1,7 +1,7 @@
 #include "Che.h"
 
 Che::Che(QObject *parent, Player player, int x, int y)
-    : ChessPiece(parent, player, "車", x, y)
+    : ChessPiece(parent, player, "車", x, y,2)
 {}
 
 bool Che::canMoveTo(const IBoard *board, int x, int y) const

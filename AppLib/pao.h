@@ -1,18 +1,18 @@
-#ifndef SHUAI_H
-#define SHUAI_H
+#ifndef PAO_H
+#define PAO_H
 
 #include "ChessPiece.h"
 
 #include <QObject>
 
-class Shuai : public ChessPiece
+class Pao : public ChessPiece
 {
 public:
-    Shuai(QObject *parent, Player player,int x, int y);
+    Pao(QObject *parent, Player player, int x, int y);
 
     // ChessPiece interface
 public:
     bool canMoveTo(const IBoard *board, int x, int y) const;
 };
 
-#endif // SHUAI_H
+#endif // MA_H
