@@ -5,6 +5,7 @@
 #include "Shi.h"
 #include "Shuai.h"
 #include "Xiang.h"
+#include "pao.h"
 #include <QDebug>
 
 ChessBoard::ChessBoard(QObject *parent)
@@ -60,6 +61,12 @@ void ChessBoard::reset()
     _chessPieces.append(new Xiang(this, Player::Black, 6, 0));
     _chessPieces.append(new Xiang(this, Player::Red, 2, 9));
     _chessPieces.append(new Xiang(this, Player::Red, 6, 9));
+
+    // pao
+    _chessPieces.append(new Pao(this, Player::Black, 1, 2));
+    _chessPieces.append(new Pao(this, Player::Black, 7, 2));
+    _chessPieces.append(new Pao(this, Player::Red, 1, 7));
+    _chessPieces.append(new Pao(this, Player::Red, 7, 7));
 }
 
 QList<ChessPiece *> ChessBoard::chessPieces() const
